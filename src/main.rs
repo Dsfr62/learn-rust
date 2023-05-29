@@ -1,4 +1,22 @@
-fn main() {
+static GLOBAL_VAR: u8 = 1;
+static mut MUTABLE_GLOBAL_VAR: u8 = 2;
+
+fn soma(a:i32, b:i32) -> i32 {
+    let resultado = a + b;
+    println!("Resultado: {resultado}");
+    return resultado;
+}
+
+fn shadow() {
+    {
+        let dentro = "teste";
+        println!("dentro {dentro}");
+    }
+
+    //println!("fora {dentro}");
+}
+
+fn index() {
     println!("Hello world");
     let mut variable = "mutable_variable";
     println!("First: {variable}");
@@ -18,4 +36,16 @@ fn main() {
 
     let verdadeiro: bool = true;
     println!("{verdadeiro}");
+
+    println!("Global variable: {GLOBAL_VAR}");
+
+    unsafe {
+        println!("Unsafe block of code: {MUTABLE_GLOBAL_VAR}");
+    };
+}
+
+fn main() {
+    soma(1, 2);
+    shadow();
+    index();
 }
